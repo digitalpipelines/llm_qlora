@@ -21,7 +21,7 @@ def read_yaml_file(file_path):
             print(f"Error reading YAML file: {e}")
 
 def get_prompt(human_prompt):
-    prompt_template=f"### HUMAN:\n{human_prompt}\n\n### RESPONSE:\n"
+    prompt_template=f"USER:\n{human_prompt}\n\nASSISTANT:\n"
     return prompt_template
 
 def get_llm_response(prompt):

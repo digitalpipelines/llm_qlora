@@ -7,7 +7,7 @@ data:
   dataset: Open-Orca/OpenOrca  # HuggingFace hub
   system_header: "### System:\n"
   instruction_header: "### Instruction:\n"
-  response_header: "### Response:\n"
+  response_header: "ASSISTANT:\n"
 lora:
   r: 8
   lora_alpha: 32
