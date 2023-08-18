@@ -1,0 +1,28 @@
+model_name: samantha-1.1-llama-7B-uncensored
+base_model: ehartford/samantha-1.1-llama-7b
+model_family: llama  # if unspecified will use AutoModelForCausalLM/AutoTokenizer
+model_context_window: 4096  # if unspecified will use tokenizer.model_max_length
+data:
+  type: vicuna
+  dataset: digitalpipelines/wizard_vicuna_70k_uncensored  # HuggingFace hub
+  user_header: "USER:\n"
+  response_header: "ASSISTANT:\n"
+lora:
+  r: 8
+  lora_alpha: 32
+  target_modules:  # modules for which to train lora adapters
+  - q_proj
+  - k_proj
+  - v_proj
+  lora_dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+trainer:
+  batch_size: 1
+  gradient_accumulation_steps: 4
+  warmup_steps: 100
+  num_train_epochs: 1
+  learning_rate: 0.0002  # 2e-4
+  logging_steps: 20
+trainer_output_dir: /workspace/trainer_outputs/
+model_output_dir: /workspace/models/  # model saved in {model_output_dir}/{model_name}
